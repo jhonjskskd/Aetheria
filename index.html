@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aetheria: An invitation-only dating experience for Nigeria's elite.">
+    <title>Aetheria | Elite Connections</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <span class="logo-text">AETHERIA</span>
+        </div>
+    </header>
+
+    <main class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">Refined Connections</h1>
+            <p class="hero-description">The premier platform for discerning individuals in Nigeria to meet, converse, and connect in a private, vetted environment.</p>
+
+            <div class="auth-card">
+                <div class="card-header">
+                    <h2>Join the Network</h2>
+                    <p>Complete your profile to view matches in your vicinity.</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="userName">Full Name</label>
+                    <input type="text" id="userName" placeholder="Your identity" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="userLoc">Location</label>
+                    <select id="userLoc">
+                        <option value="Lagos">Lagos</option>
+                        <option value="Abuja">Abuja</option>
+                        <option value="Port Harcourt">Port Harcourt</option>
+                        <option value="Ibadan">Ibadan</option>
+                        <option value="Kano">Kano</option>
+                    </select>
+                </div>
+
+                <button class="cta-btn" onclick="startJourney()">Enter Aetheria</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-trust">
+        <p>© 2026 Aetheria. All rights reserved. Private. Secure. Elite.</p>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            if(localStorage.getItem('userName')) {
+                window.location.href = 'explore.html';
+            }
+        };
+
+        function startJourney() {
+            const name = document.getElementById('userName').value.trim();
+            const loc = document.getElementById('userLoc').value;
+            
+            if(name.length > 3) {
+                localStorage.setItem('userName', name);
+                localStorage.setItem('userLoc', loc);
+                
+                // Visual feedback for a premium feel
+                const btn = document.querySelector('.cta-btn');
+                btn.innerHTML = "Authenticating...";
+                btn.classList.add('loading');
+                
+                setTimeout(() => {
+                    window.location.href = 'explore.html';
+                }, 1000);
+            } else {
+                alert("Please enter a valid name to proceed.");
+            }
+        }
+    </script>
+</body>
+</html>
+
